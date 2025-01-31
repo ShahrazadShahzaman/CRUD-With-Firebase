@@ -1,0 +1,104 @@
+.ANP-btn ,.submitbtn{
+border-radius: 4px;
+background-color: #E3B6B1;
+border: none;
+color: black;
+padding: 10px;
+width: 12%;
+font-size: 1rem;
+transition: background-color 0.2s ease-in;
+};
+.actionbtn {
+background-color: blue;
+color: aliceblue;
+}
+form {
+padding-left: 25%;
+}
+input {
+width: 60%;
+padding: 20px;
+margin: 15px;
+border: 2px solid black;
+border-radius: 7px;
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
+}
+label {
+font-size: 1.2rem;
+display: block;
+}
+.ANP-btn:hover, .submitbtn:hover {
+background-color: #845162;
+color: #fff;
+transform: scale(1.05);
+}
+.product {
+background: linear-gradient(180deg, #29104A, #522c5d);
+height: 100vh;
+}
+.create .data {
+color: #fff;
+}
+.data {
+color: #fff;
+}
+table {
+width: 100%;
+border-collapse:separate;
+border-spacing: 0;
+margin: 20px 0;
+font-size: 1.1rem;
+text-align: left;
+overflow: hidden;
+border-radius: 8px;
+border: 1px solid #ddd;
+}
+thead {
+color: #ffffff;
+}
+thead th {
+padding: 12px 15px;
+font-weight: bold;
+text-transform: uppercase;
+border: 1px solid #ddd;
+}
+tbody tr {
+border-bottom: 1px solid #ddd;
+transition: background-color 0.2s ease-in;
+color: #fff;
+}
+tbody tr:hover {
+background-color: darkgray;
+color: black;
+}
+tbody td {
+padding: 12px 15px;
+border: 1px solid #ddd;
+}
+.actionbtn {
+padding: 10px;
+border: none;
+margin: 5px;
+border-radius: 4px;
+}
+.edit {
+background-color: #4165d5;
+color: #ffffff;
+}
+.del {
+background-color: red;
+color: #ffffff;
+}
+.edit:hover , .del:hover {
+transform:scale(1.05);
+text-decoration: underline;
+}
+.ANP-btn{
+margin-left: 40%;
+}
+.submitbtn{
+    margin-left:26%;
+}
