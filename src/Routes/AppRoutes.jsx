@@ -11,6 +11,7 @@ const AppRoutes=()=>{
     <Route path="about" element={<About/>}/>
     <Route path="viewproduct" element={<ViewProduct/>}/>
     <Route path="createproduct" element={<Createproduct/>}/>
+    <Route path="createproduct/:productId" element={<Createproduct/>}/>
 </Routes>
     );
 };

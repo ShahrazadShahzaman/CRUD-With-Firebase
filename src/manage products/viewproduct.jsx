@@ -1,4 +1,4 @@
-import { getDocs,collection,deleteDoc,doc,onSnapshot } from "firebase/firestore";
+import { collection,deleteDoc,doc,onSnapshot } from "firebase/firestore";
 import {db} from "../firebase/config";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,27 +10,23 @@ const ViewProduct=()=>{
     const navigate = useNavigate();
 
     const handleEdit=(item)=>{
-     navigate(`/createproduct/${item.id}`
-    )};
-   
-const getProductData = async (e) =>{
-    try {
-        const res = await getDocs (collection(db, 'product'))
-        const product = res.docs.map((doc)=>{
-            return({
-                id: doc.id,
-                ...doc.data()
-            })
-        })
-        setViewProduct(product);
-    }catch(error){
-        console.log(error);
-    }
-}
+        toast.success("Updating Product...")
+        setTimeout(()=>{
+            navigate(`/createproduct/${item.id}`)
+        },1000);
+    };
 
 useEffect(()=>{
-    getProductData();
+    const unsubscribe = onSnapshot(collection(db,"product"), (snapshot)=>{
+        const productList =snapshot.docs.map(doc=>({
+            id:doc.id,
+            ...doc.data()
+        }));
+        setViewProduct(productList);
+});
+return unsubscribe;
 },[])
+
 const handleDelete = async (id) =>{
     try{
         await deleteDoc(doc(db,"product",id));

@@ -2,7 +2,8 @@ import { useEffect, useState} from "react";
 import { db } from "../firebase/config";
 import { ToastContainer,toast } from "react-toastify";
 import { collection , doc ,addDoc ,getDoc, updateDoc } from "firebase/firestore";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Createproduct =()=>{
     const [product,setProduct]=useState({
@@ -12,8 +13,7 @@ const Createproduct =()=>{
     });
 const [loading,setLoading]=useState(false);
 const navigate =useNavigate();
-const location=useLocation();
-const productId=location.pathname.split('/')[2];
+const {productId} =useParams();
 
 useEffect(()=>{
     if (productId){
@@ -21,7 +21,7 @@ useEffect(()=>{
         const productRef = doc(db, "product" ,productId);
         const docSnap = await getDoc(productRef);
     if(docSnap.exists()){
-        setProduct(docSnap.data());
+        setProduct({...docSnap.data()});
     }else{
         toast.error("product not found")
         navigate ("/viewproduct");
@@ -29,7 +29,9 @@ useEffect(()=>{
     };
     fetchproduct();
 }
-}, [productId]);
+}, [productId,navigate]);
+
+
 const handleSubmit=async(e)=>{
     e.preventDefault();
     setLoading(true);
@@ -41,7 +43,10 @@ try{
      price:product.price,
      description:product.description
     });
-    toast.success("Product Updated Successfully!")
+    toast.success("Product Updated Successfully!",{
+        autoClose:1000,
+        onClose:()=>navigate("/viewproduct")
+    });
     }
     else{
     await addDoc(collection(db, 'product'),{
@@ -50,7 +55,11 @@ try{
         description:product.description,
     });
     setProduct({ name: '', price: '', description: ''});
-    toast.success("Product Added Successfully");
+    toast.success("Product Added Successfully",{
+            autoClose:1000,
+            onClose:()=>navigate("/viewproduct")
+        }
+    );
 }
 }catch(error){
     toast.error("Error Adding Product");
